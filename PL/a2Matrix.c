@@ -38,12 +38,32 @@ void printmat(int a[5][5], int r, int c)
 	}
 }
 
+void printmatptr(int *a, int r, int c)
+{
+	int i,j;
+	for(i=0;i<r;i++)
+	{
+		printf(" ");
+		for(j=0;j<c;j++)
+			printf("%3d ", *(a+i*5+j));
+		printf("\n");
+	}
+}
+
 void add(int a[5][5], int b[5][5], int r, int c, int res[5][5])
 {
 	int i,j;
 	for(i=0;i<r;i++)
 		for(j=0;j<c;j++)
 			res[i][j] = a[i][j] + b[i][j];
+}
+
+void addptr(int *a, int *b,int r, int c, int *res)
+{
+	int i,j;
+	for(i=0;i<r;i++)
+		for(j=0;j<c;j++)
+			*(res+i*c+j) = *(a+i*5+j) + *(b+i*5+j);
 }
 
 void mul(int a[5][5], int ra, int ca, int b[5][5], int rb, int cb, int res[5][5])
@@ -59,6 +79,19 @@ void mul(int a[5][5], int ra, int ca, int b[5][5], int rb, int cb, int res[5][5]
 		}
 }
 
+void mulptr(int *a, int ra, int ca, int *b, int rb, int cb, int *res)
+{
+	int i,j,k;
+	for(i=0;i<ra;i++)
+		for(j=0;j<cb;j++)
+		{
+			int s=0;
+			for(k=0;k<rb;k++)
+				s += ((*(a+i*5+k))*(*(b+k*5+j)));
+			*(res+i*5+j) = s;
+		}
+}
+
 void trans(int a[5][5], int r, int c)
 {
 	int i,j;
@@ -67,6 +100,18 @@ void trans(int a[5][5], int r, int c)
 		printf(" ");
 		for(j=0;j<r;j++)
 			printf("%3d ", a[j][i]);
+		printf("\n");
+	}
+}
+
+void transptr(int *a, int r, int c)
+{
+	int i,j;
+	for(i=0;i<c;i++)
+	{
+		printf(" ");
+		for(j=0;j<r;j++)
+			printf("%3d ", *(a+j*5+i));
 		printf("\n");
 	}
 }
@@ -103,9 +148,43 @@ void saddle(int a[5][5], int r, int c)
 		printf("No saddle points for this matrix!");
 }
 
+
+void saddleptr(int *a, int r, int c)
+{
+	int i,j,k,count=0;
+	for(i=0;i<r;i++)
+	{
+		int min=*(a+i*5+j),minc;
+		for(j=0;j<c;j++)
+		{
+			if(min>*(a+i*c+j))
+			{
+				min=*(a+i*5+j);
+				minc=j;
+			}
+		}
+		int max=*(a+0*5+minc),maxr;
+		for(j=0;j<r;j++)
+		{
+			if(max<*(a+j*5+minc))
+			{
+				max=*(a+j*5+minc);
+				maxr=j;
+			}
+		}
+		if(maxr==i){
+			printf("(%d, %d) ", i+1,minc+1);
+			count++;
+		}
+	}
+	if(!count)
+		printf("No saddle points for this matrix!");
+}
+
+
 int main(void) {
 	printf("Assignment2 - Matrix Operations\n\n");
-	int a[5][5], b[5][5],ra=0,ca=0,rb=0,cb=0,f=1,res[5][5],rr=0,rc=0;
+	int a[5][5], b[5][5],ra=0,ca=0,rb=0,cb=0,f=1,res[5][5];
 	while(f)
 	{
 		switch(menu())
@@ -136,6 +215,9 @@ int main(void) {
 					add(a,b,ra,ca,res);
 					printf("A + B = \n");
 					printmat(res, ra, ca);
+					addptr(a,b,ra,ca,res);
+					printf("(With pointer) A + B = \n");
+					printmatptr(res, ra, ca);
 				}else{
 					printf("Size of both matrices should be same to perform addition!\n");
 				}
@@ -147,6 +229,9 @@ int main(void) {
 					mul(a,ra,ca,b,rb,cb,res);
 					printf("A * B = \n");
 					printmat(res, ra, cb);
+					mulptr(a,ra,ca,b,rb,cb,res);
+					printf("(With pointer)A * B = \n");
+					printmatptr(res, ra, cb);
 				}else{
 					printf("Invalid size to perform multiplication!\n");
 				}
@@ -155,13 +240,21 @@ int main(void) {
 			case 5:
 				printf("Transpose of A = \n");
 				trans(a, ra, ca);
+				printf("\n(With pointer)Transpose of A = \n");
+				transptr(a, ra, ca);
 				printf("Transpose of B = \n");
 				trans(b, rb, cb);
+				printf("\n(With pointer)Transpose of B = \n");
+				transptr(b, rb, cb);
 				break;
 			case 6:
 				printf("Saddle points of A = \n");
 				saddle(a, ra, ca);
+				printf("(With pointer) Saddle points of A = \n");
+				saddle(a, ra, ca);
 				printf("\nSaddle points of B = \n");
+				saddle(b, rb, cb);
+				printf("(With pointer) Saddle points of B = \n");
 				saddle(b, rb, cb);
 				break;
 			default:
