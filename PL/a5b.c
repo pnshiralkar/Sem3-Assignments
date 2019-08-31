@@ -108,15 +108,30 @@ int main(void) {
 				rename("db1.sql", "db.sql");
 			}
 			break;
+		case 5:
+			printf("Enter ID to modify : ");
+			scanf("%d", &c);
+			d = search(c, 0);
+			if(c!=-1)
+			{
+				fp = fopen("db.sql", "r");
+				FILE *fw = fopen("db1.sql", "w");
+				fscanf(fp, "%d %s %d %ld %s", &emp.id, emp.name, &emp.age, &emp.mbno, emp.email);
+				while(!feof(fp))
+				{
+					if(emp.id != c)
+						fprintf(fw, "%d %s %d %ld %s\n", emp.id, emp.name, emp.age, emp.mbno, emp.email);
+					fscanf(fp, "%d %s %d %ld %s", &emp.id, emp.name, &emp.age, &emp.mbno, emp.email);
+				}
+				fclose(fp);
+				fclose(fw);
+				rename("db1.sql", "db.sql");
+			}
+			break;
 		}
 
+
 	}
-//	int v1=5,v2=4;
-//	fprintf(fp, "%d\n", v1);
-//	fprintf(fp, "%d", v2);
-//	fscanf(fp, "%d", &v1);
-//	fscanf(fp, "%d", &v2);
-//	printf("%d %d", v1, v2);
 
 	return EXIT_SUCCESS;
 }
