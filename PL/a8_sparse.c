@@ -79,9 +79,47 @@ void out(SparseMat m[], int n)
 		printf("%3d %3d %5d\n", m[i].i, m[i].j, m[i].val);
 }
 
+void add(SparseMat m1[], int n1, SparseMat m2[], int n2, SparseMat res[], int *nres)
+{
+	int i=0,j=0,c=0,f=0;
+	while(i<n1 || j<n2)
+	{
+		f=0;
+		if(m1[i].i == m2[j].i)
+		{
+			if(m1[i].j == m2[j].j)
+			{
+				res[c].i = m1[i].i;
+				res[c].j = m1[i].j;
+				res[c++].val = m1[i++].val+m2[j++].val;
+				f=1;
+			}
+			else if(m1[i].j < m2[j].j)
+			{
+				res[c].i = m1[i].i;
+				res[c].j = m1[i].j;
+				res[c++].val = m1[i++].val;
+			}
+			else
+			{
+				res[c].i = m2[j].i;
+				res[c].j = m2[j].j;
+				res[c++].val = m2[j++].val;
+			}
+		}
+		else
+		{
+			res[c].i = m1[i].i;
+			res[c].j = m1[i].j;
+			res[c++].val = m1[i++].val;
+		}
+	}
+	*nres = c;
+}
+
 int main(void) {
-	int f=1,n1=0,n2=0,i;
-	SparseMat m1[100],m2[100],madd[100];
+	int f=1,n1=0,n2=0,nres,i;
+	SparseMat m1[100],m2[100],mres[100];
 
 	while(f)
 	{
@@ -97,7 +135,8 @@ int main(void) {
 			/////Incomplete//////////////
 			printf("Enter matrix to add : \n");
 			n2 = inp(m2);
-
+			add(m1,n1,m2,n2,mres,&nres);
+			out(mres, nres);
 			break;
 		case 4:
 			for(i=0;i<n1;i++)
