@@ -10,139 +10,160 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#define R 50
+#define C 50
+
+typedef struct s
+{
+	int row,column,value;
+}Sparse;
 
 int menu()
 {
-	int res;
-	printf("\n\n1: Enter matrix\n2: Display\n3: Addition\n4: Simple transpose\n5: Fast transpose\n6: Exit\n\nEnter a choice : ");
-	scanf("%d", &res);
-	return res;
+	int choice;
+	printf("Sparse Matrix Operations\n1. Accept matrix and convert into sparse matrix\n2. Addition of sparse matrix\n3. Simple transpose of sparse matrix\n4. Fast transpose of sparse matrix\n5. Convert sparse matrix into simple matrix\n6. Exit\n\nEnter your choice:- ");
+	scanf("%d",&choice);
+	return choice;
 }
 
-typedef struct{
-	int i,j,val;
-}SparseMat;
 
-int inp(SparseMat s[])
+void accept(int mat[R][C],int *r,int *c,int *count, Sparse s[R])
 {
-	int i,j,r,c,tmp,count=0;
-	printf("Enter No. of rows and columns for matrix : ");
-	scanf("%d %d", &r, &c);
-	printf("Enter the elements of matrix : ");
+	int i,j;
+	*count =1;
+	printf("Enter number of rows in the matrix:- ");
+	scanf("%d",r);
+	printf("Enter number of columns in the matrix:- ");
+	scanf("%d",c);
+	for(i=0;i<*r;i++)
+	{
+		for(j=0;j<*c;j++)
+		{
+			printf("Enter element [%d][%d]:- ",i,j);
+			scanf("%d",&mat[i][j]);
+			if(mat[i][j]!=0)
+				(*count)++;
+		}
+	}
+	convert(mat,*r,*c,*count,s);
+}
+
+void convert(int mat[R][C],int r,int c,int count, Sparse s[R])
+{
+	int i,j,k;
+	s[0].row=r;
+	s[0].column=c;
+	s[0].value=count-1;
+	k=1;
 	for(i=0;i<r;i++)
+	{
 		for(j=0;j<c;j++)
 		{
-			scanf("%d", &tmp);
-			if(tmp != 0)
+			if(mat[i][j]!=0)
 			{
-				s[count].i = i;
-				s[count].j = j;
-				s[count++].val = tmp;
+				s[k].row=i;
+				s[k].column=j;
+				s[k].value=mat[i][j];
+				k++;
 			}
-		}
-	return count;
-}
-
-void swapint(int *a , int *b){
-	int tmp;
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
-}
-
-void swap(SparseMat *a , SparseMat *b){
-	SparseMat tmp;
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
-}
-
-
-void BubbleSort(SparseMat a[] , int n)
-{
-	int i , j;
-	for(i=0;i<n-1; i++)
-	{
-		for(j = 0; j < n-i-1; j++)
-		{
-			if(a[j].i > a[j+1].i)
-				swap(&a[j] , &a[j+1]);
 		}
 	}
 }
 
-void out(SparseMat m[], int n)
+void display(Sparse s[R],int count)
 {
-	int i;
-	printf("Row Col Value\n");
-	for(i=0;i<n;i++)
-		printf("%3d %3d %5d\n", m[i].i, m[i].j, m[i].val);
+	int i,j;
+	printf("--------------------------------------------\n");
+	printf("Index\tRow\tColumn\tValue\n");
+	printf("--------------------------------------------\n");
+	for(i=0;i<count;i++)
+		printf("%d\t%d\t%d\t%d\n",i,s[i].row,s[i].column,s[i].value);
+	printf("--------------------------------------------\n");
 }
 
-void add(SparseMat m1[], int n1, SparseMat m2[], int n2, SparseMat res[], int *nres)
+void add(Sparse s1[R],Sparse s2[R],Sparse s3[R],int count)
 {
-	int i=0,j=0,c=0,f=0;
-	while(i<n1 || j<n2)
+	int i=1,j=1,k=1;
+	while(i<=s1[0].value && j<=s2[0].value)
 	{
-		f=0;
-		if(m1[i].i == m2[j].i)
+		if(s1[i].row==s2[j].row && s1[i].column == s2[j].column)
 		{
-			if(m1[i].j == m2[j].j)
-			{
-				res[c].i = m1[i].i;
-				res[c].j = m1[i].j;
-				res[c++].val = m1[i++].val+m2[j++].val;
-				f=1;
-			}
-			else if(m1[i].j < m2[j].j)
-			{
-				res[c].i = m1[i].i;
-				res[c].j = m1[i].j;
-				res[c++].val = m1[i++].val;
-			}
-			else
-			{
-				res[c].i = m2[j].i;
-				res[c].j = m2[j].j;
-				res[c++].val = m2[j++].val;
-			}
+			s3[k].row=s1[i].row;
+			s3[k].column=s1[i].column;
+			s3[k].value=s1[i].value + s2[j].value;
+			i++,j++,k++;
 		}
-		else
+		if(s1[i].row==s2[j].row && s1[i].column < s2[j].column)
 		{
-			res[c].i = m1[i].i;
-			res[c].j = m1[i].j;
-			res[c++].val = m1[i++].val;
+			s3[k].row=s1[i].row;
+			s3[k].column=s1[i].column;
+			s3[k].value=s1[i].value;
+			i++,k++;
 		}
+		if(s1[i].row==s2[j].row && s1[i].column > s2[j].column)
+		{
+			s3[k]=s2[j];
+			j++,k++;
+		}
+		if(s1[i].row < s2[j].row)
+		{
+			s3[k]=s1[i];
+			i++,k++;
+		}
+		if(s1[i].row > s2[j].row)
+		{
+			s3[k]=s2[j];
+			j++,k++;
+		}
+		while(i<=s1[0].value)
+		{
+			s3[k]=s1[i];
+			i++,k++;
+		}
+		while(j<=s2[0].value)
+		{
+			s3[k]=s2[j];
+			j++,k++;
+		}
+		s3[0].row=s1[0].row;
+		s3[0].column=s1[0].column;
+		s3[0].value=k;
 	}
-	*nres = c;
 }
 
-int main(void) {
-	int f=1,n1=0,n2=0,nres,i;
-	SparseMat m1[100],m2[100],mres[100];
 
-	while(f)
+int main(void)
+{
+	int mat1[R][C],mat2[R][C];
+	int r1,c1,r2,c2;
+	int count;
+	Sparse s1[R],s2[R],s3[R];
+
+	while(1)
 	{
 		switch(menu())
 		{
-		case 1:
-			n1 = inp(m1);
-			break;
-		case 2:
-			out(m1, n1);
-			break;
-		case 3:
-			/////Incomplete//////////////
-			printf("Enter matrix to add : \n");
-			n2 = inp(m2);
-			add(m1,n1,m2,n2,mres,&nres);
-			out(mres, nres);
-			break;
-		case 4:
-			for(i=0;i<n1;i++)
-				swapint(&m1[i].i, &m1[i].j);
-			out(m1, n1);
+			case 1:
+				printf("Enter matrix 1: \n");
+				accept(mat1,&r1,&c1,&count,s1);
+				display(s1,count);
+				printf("Enter matrix 2: \n");
+				accept(mat2,&r2,&c2,&count,s2);
+				display(s2,count);
+				break;
+			case 2:
+				printf("\nMatrix 1 is: \n");
+				display(s1,count);
+				printf("\nMatrix 2 is: \n");
+				display(s2,count);
+				add(s1,s2,s3,count);
+				printf("\nAddition of matrices is: ");
+				display(s3,count);
+				break;
+			default:
+				return EXIT_SUCCESS;
 		}
 	}
 	return EXIT_SUCCESS;
 }
+
