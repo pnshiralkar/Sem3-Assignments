@@ -1,0 +1,10 @@
+h10-23254@ml06-OptiPlex-3046:~/OOPL$ ./a.out
+Enter the two numbers : 555 444
+Division of 555.000000 and 444.000000 is : 1.250000
+
+Do you want to repeat(y/n)? : y
+Enter the two numbers : 56 0
+Divide by zero not possible!
+
+Do you want to repeat(y/n)? : n
+
