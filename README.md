@@ -3,4 +3,5 @@
  
  # Subjects - 
  PL - Programming Languages\
- OOPL - Object Oriented Programming Language
+ OOPL - Object Oriented Programming Language\
+ CSL - Communication Skills Lab
