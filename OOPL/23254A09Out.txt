@@ -1,0 +1,109 @@
+FILE OPERATIONS
+1. Create Master Table
+2. Display Table
+3. Insert New Entry
+4. Delete Entry
+5. Edit an Entry
+6. Search for Record
+7. Exit
+Your Choice: 1
+
+No. of Records to create: 3
+
+Entry #1
+Name: Pratham
+Roll Number: 23254
+Subject: OOPL
+Subject Code: 23456 
+Internal Marks: 22
+University Marks: 66
+
+Entry #2
+Name: John
+Roll Number: 48545  
+Subject: DELD
+Subject Code: 21809
+Internal Marks: 21
+University Marks: 56
+
+Entry #3
+Name: Robert
+Roll Number: 76598
+Subject: DM
+Subject Code: 24089
+Internal Marks: 19
+University Marks: 55
+
+FILE OPERATIONS
+1. Create Master Table
+2. Display Table
+3. Insert New Entry
+4. Delete Entry
+5. Edit an Entry
+6. Search for Record
+7. Exit
+Your Choice: 2
+Name  Roll No.   Subject    Sub. Code     Int. Marks     Uni. Marks
+
+Pratham     23254      OOPL     23456              22           66
+John     48545      DELD     21809              21           56
+Robert     76598        DM     24089              19           55
+
+FILE OPERATIONS
+1. Create Master Table
+2. Display Table
+3. Insert New Entry
+4. Delete Entry
+5. Edit an Entry
+6. Search for Record
+7. Exit
+Your Choice: 5
+Enter Roll No. to Edit: 23254
+
+Record Found!
+Enter Edited Data:
+Name: Pats
+Roll Number: 23254
+Subject: FDS
+Subject Code: 3434
+Internal Marks: 22
+University Marks: 70
+
+FILE OPERATIONS
+1. Create Master Table
+2. Display Table
+3. Insert New Entry
+4. Delete Entry
+5. Edit an Entry
+6. Search for Record
+7. Exit
+Your Choice: 2
+Name  Roll No.   Subject    Sub. Code     Int. Marks     Uni. Marks
+
+Pats     23254       FDS      3434              22           70
+John     48545      DELD     21809              21           56
+Robert     76598        DM     24089              19           55
+
+FILE OPERATIONS
+1. Create Master Table
+2. Display Table
+3. Insert New Entry
+4. Delete Entry
+5. Edit an Entry
+6. Search for Record
+7. Exit
+Your Choice: 6
+Enter Roll No. to Search: 48545
+
+Record Found!
+
+FILE OPERATIONS
+1. Create Master Table
+2. Display Table
+3. Insert New Entry
+4. Delete Entry
+5. Edit an Entry
+6. Search for Record
+7. Exit
+Your Choice: 7
+

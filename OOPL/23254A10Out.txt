@@ -1,0 +1,127 @@
+SEQUENTIAL FILE OPERATIONS
+
+1. Create Table
+2. Display Table
+3. Add Entry
+4. Delete Entry
+5. Edit Entry
+6. Search Entry
+7. Exit
+Your Choice: 1
+No. of Records to Create: 3
+
+Entry #1
+Student ID: 1
+Name: Pratham
+Age: 20
+
+Entry #2
+Student ID: 2     
+Name: Suresh
+Age: 21
+
+Entry #3
+Student ID: 3
+Name: Saarth
+Age: 33
+
+SEQUENTIAL FILE OPERATIONS
+
+1. Create Table
+2. Display Table
+3. Add Entry
+4. Delete Entry
+5. Edit Entry
+6. Search Entry
+7. Exit
+Your Choice: 2
+Student ID  Name            Age
+    1   Pratham             20
+    2    Suresh             21
+    3    Saarth             33
+
+SEQUENTIAL FILE OPERATIONS
+
+1. Create Table
+2. Display Table
+3. Add Entry
+4. Delete Entry
+5. Edit Entry
+6. Search Entry
+7. Exit
+Your Choice: 3
+Student ID: 5
+Name: Amit
+Age: 17
+
+SEQUENTIAL FILE OPERATIONS
+
+1. Create Table
+2. Display Table
+3. Add Entry
+4. Delete Entry
+5. Edit Entry
+6. Search Entry
+7. Exit
+Your Choice: 4
+Enter Roll No. to Edit: 3
+
+Record Deleted Successfully!
+
+SEQUENTIAL FILE OPERATIONS
+
+1. Create Table
+2. Display Table
+3. Add Entry
+4. Delete Entry
+5. Edit Entry
+6. Search Entry
+7. Exit
+Your Choice: 2
+Student ID  Name            Age
+    1   Pratham             20
+    2    Suresh             21
+    5      Amit             17
+
+SEQUENTIAL FILE OPERATIONS
+
+1. Create Table
+2. Display Table
+3. Add Entry
+4. Delete Entry
+5. Edit Entry
+6. Search Entry
+7. Exit
+Your Choice: 5
+Enter Roll No. to Edit: 5
+Student ID: 4
+Name: Mihir
+Age: 20
+
+Record Edited Successfully!
+
+SEQUENTIAL FILE OPERATIONS
+
+1. Create Table
+2. Display Table
+3. Add Entry
+4. Delete Entry
+5. Edit Entry
+6. Search Entry
+7. Exit
+Your Choice: 6
+Enter Roll No. to Search: 1
+
+Record Found!
+
+SEQUENTIAL FILE OPERATIONS
+
+1. Create Table
+2. Display Table
+3. Add Entry
+4. Delete Entry
+5. Edit Entry
+6. Search Entry
+7. Exit
+Your Choice: 7
+

@@ -1,0 +1,61 @@
+TEMPLATES
+
+1. Add Two Matrices
+2. Multiply Two Matrices
+3. Exit
+Your Choice: 1
+Matrix 1:
+No. of Rows: 2
+No. of Columns: 2
+Type of Matrix: 1 for int / 2 for float: 2
+Row #1
+3 6
+Row #2
+7 9
+Matrix 2:
+No. of Rows: 2
+No. of Columns: 2
+Row #1
+7 9
+Row #2
+1 0
+
+Resultant Matrix: 
+|	10		15	|
+|	8		9	|
+
+TEMPLATES
+
+1. Add Two Matrices
+2. Multiply Two Matrices
+3. Exit
+Your Choice: 2
+Matrix 1:
+No. of Rows: 3
+No. of Columns: 2
+Type of Matrix: 1 for int / 2 for float: 2
+Row #1
+1.2 2.7 
+Row #2
+5.5 0.3
+Row #3
+6.1 5.9
+Matrix 2:
+No. of Rows: 2
+No. of Columns: 1
+Row #1
+33.8
+Row #2
+87.3
+
+Resultant Matrix: 
+|	275	|
+|	211	|
+|	721	|
+
+TEMPLATES
+
+1. Add Two Matrices
+2. Multiply Two Matrices
+3. Exit
+Your Choice: 3
