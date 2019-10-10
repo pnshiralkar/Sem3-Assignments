@@ -1,0 +1,51 @@
+guest-jejp6b@ml06-OptiPlex-3046:~$ g++ 23254.cpp
+guest-jejp6b@ml06-OptiPlex-3046:~$ ./a.out
+
+
+Complex Numbers
+
+1. Enter the complex numbers
+2. Addition
+3. Subtraction
+4. Exit
+   Your choice : 1
+Enter Complex number #1 : 
+	 Real part : 1.333
+	 Imaginary part : 2.7
+Enter Complex number #2 : 
+	 Real part : 2
+	 Imaginary part : 0.2
+
+Complex numbers (1.333 + i2.7) and (2 + i0.2) entered successfully.
+
+Complex Numbers
+
+1. Enter the complex numbers
+2. Addition
+3. Subtraction
+4. Exit
+   Your choice : 2
+
+
+Addition of C1 and C2 is : 3.333 + i2.9
+
+
+Complex Numbers
+
+1. Enter the complex numbers
+2. Addition
+3. Subtraction
+4. Exit
+   Your choice : 3
+
+
+Subraction of C1 and C2 is : -0.667 + i2.5
+
+
+Complex Numbers
+
+1. Enter the complex numbers
+2. Addition
+3. Subtraction
+4. Exit
+   Your choice : 4
